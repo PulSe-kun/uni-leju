@@ -1,0 +1,287 @@
+@charset "UTF-8";
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.home.data-v-92bb8f34 {
+  width: 750rpx;
+}
+.home .header.data-v-92bb8f34 {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+  padding: 15rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  box-sizing: border-box;
+}
+.home .header .left.data-v-92bb8f34 {
+  width: 30%;
+}
+.home .header .icon.data-v-92bb8f34 {
+  display: block;
+  width: 42rpx;
+  height: 42rpx;
+}
+.home .header .info.data-v-92bb8f34 {
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 32rpx;
+  color: #fff;
+  text-align: center;
+}
+.home .header .right.data-v-92bb8f34 {
+  width: 30%;
+  display: flex;
+  justify-content: flex-end;
+}
+.home .header .right image.data-v-92bb8f34:first-child {
+  margin-right: 20px;
+}
+.home .banner.data-v-92bb8f34 {
+  width: 100%;
+  height: 362rpx;
+}
+.home .banner swiper.data-v-92bb8f34 {
+  width: 100%;
+  height: 362rpx;
+}
+.home .banner swiper swiper-item.data-v-92bb8f34 {
+  border-radius: 0 0 30rpx 30rpx;
+  height: 100%;
+}
+.home .banner swiper swiper-item .img.data-v-92bb8f34 {
+  display: block;
+  width: 100%;
+}
+.home .kind.data-v-92bb8f34 {
+  width: 100%;
+  margin: 60rpx auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.home .kind .items.data-v-92bb8f34 {
+  width: 120rpx;
+  text-align: center;
+}
+.home .kind .items .img.data-v-92bb8f34 {
+  display: block;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 8rpx;
+  margin: 0 auto;
+  margin-bottom: 10rpx;
+}
+.home .kind .items text.data-v-92bb8f34 {
+  font-size: 30rpx;
+  color: #3e3e3e;
+}
+.home .notify .box.data-v-92bb8f34 {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 670rpx;
+  height: 96rpx;
+  margin: 40rpx auto;
+  background-color: #fff;
+  font-size: 28rpx;
+  color: #3e3e3e;
+  line-height: 96rpx;
+  font-weight: bold;
+}
+.home .notify .box.data-v-92bb8f34  .uni-icons {
+  margin-left: 30rpx !important;
+  vertical-align: bottom;
+}
+.home .notify .box .activity.data-v-92bb8f34 {
+  margin-left: 15rpx;
+  color: orange;
+}
+.home .notify .box .rem-swiper.data-v-92bb8f34 {
+  flex: 1;
+  height: 48px;
+}
+.home .notify .box .rem-swiper .items.data-v-92bb8f34 {
+  display: flex;
+  justify-content: space-around;
+}
+.home .notify .box .rem-swiper .items .show .price.data-v-92bb8f34 {
+  display: block;
+  color: #b0b0b0;
+  font-size: 18rpx;
+  text-decoration: line-through;
+  line-height: 60rpx;
+}
+.home .notify .box .rem-swiper .items .show .newprice.data-v-92bb8f34 {
+  display: block;
+  color: red;
+  font-size: 18rpx;
+  line-height: 20rpx;
+}
+.home .hot.data-v-92bb8f34 {
+  padding: 0 30rpx;
+}
+.home .hot .title.data-v-92bb8f34 {
+  padding: 30rpx 0;
+  font-size: 32rpx;
+  color: #3e3e3e;
+  letter-spacing: 2rpx;
+  font-weight: 600;
+}
+.home .hot .list.data-v-92bb8f34 {
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.home .hot .list .scroll-series.data-v-92bb8f34 {
+  width: 100%;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+}
+.home .hot .list .scroll-series .series-block.data-v-92bb8f34 {
+  display: inline-block;
+  margin: 0 20rpx;
+  width: 208rpx;
+}
+.home .hot .list .scroll-series .series-block .img.data-v-92bb8f34 {
+  width: 90%;
+  height: 80%;
+}
+.home .hot .list .scroll-series .series-block .name.data-v-92bb8f34 {
+  font-size: 26rpx;
+  line-height: 38rpx;
+  color: #3e3e3e;
+  text-align: center;
+  margin-top: 20rpx;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.home .new.data-v-92bb8f34 {
+  padding: 0 30rpx;
+}
+.home .new .title.data-v-92bb8f34 {
+  padding: 30rpx 0;
+  font-size: 32rpx;
+  color: #3e3e3e;
+  letter-spacing: 2rpx;
+  font-weight: 600;
+}
+.home .new .content.data-v-92bb8f34 {
+  width: 100%;
+  height: 100%;
+  white-space: nowrap;
+  overflow: auto;
+}
+.home .new .content .card.data-v-92bb8f34 {
+  width: 600rpx;
+  display: inline-block;
+  margin-right: 20px;
+  position: relative;
+}
+.home .new .content .card .img.data-v-92bb8f34 {
+  position: absolute;
+  left: 44rpx;
+  top: 0;
+  bottom: 0;
+  width: 194rpx;
+  height: 168rpx;
+  border-radius: 8rpx;
+  margin: auto;
+}
+.home .new .content .card .text.data-v-92bb8f34 {
+  padding-left: 270rpx;
+  padding-top: 50rpx;
+  padding-bottom: 50rpx;
+  height: 160rpx;
+  background: #fff;
+  border-radius: 20rpx;
+}
+.home .new .content .card .text .name.data-v-92bb8f34 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.home .new .content .card .text .price.data-v-92bb8f34 {
+  margin-top: 60rpx;
+}
+.home .like.data-v-92bb8f34 {
+  padding: 0 30rpx;
+}
+.home .like .title.data-v-92bb8f34 {
+  padding: 30rpx 0;
+  font-size: 32rpx;
+  color: #3e3e3e;
+  letter-spacing: 2rpx;
+  font-weight: 600;
+}
+.home .like .main.data-v-92bb8f34 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.home .like .main .list.data-v-92bb8f34 {
+  width: 48%;
+  background-color: #fff;
+  height: 418rpx;
+  margin: 20rpx 0;
+  border-radius: 8rpx;
+}
+.home .like .main .list image.data-v-92bb8f34 {
+  width: 100%;
+  display: block;
+  height: 238rpx;
+  border-radius: 8rpx;
+}
+.home .like .main .list .name.data-v-92bb8f34 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 24rpx;
+  font-weight: bold;
+  padding: 30rpx 0;
+  margin-left: 30rpx;
+  margin-bottom: 20rpx;
+}
+.home .like .main .list .text.data-v-92bb8f34 {
+  margin-left: 30rpx;
+  font-size: 24rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.home .like .main .list .kinds.data-v-92bb8f34 {
+  margin-right: 30rpx;
+}
+
