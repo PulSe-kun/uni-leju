@@ -16,5 +16,6 @@
 	/*每个页面公共css */
 	body{
 	 background: #f1ece7;
+	 font-size: 28rpx !important;
 	}
 </style>

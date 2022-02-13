@@ -62,7 +62,7 @@
 					<image class="img" :src="item.pic" mode=""></image>
 					<view class="text">
 						<view class="name">{{ item.name }}</view>
-						<view class="price">{{ item.price }}</view>
+						<view class="price">价格:{{ item.price }}</view>
 					</view>
 				</view>
 			</view>
@@ -337,6 +337,7 @@ export default {
 					height: 160rpx;
 					background: #fff;
 					border-radius: 20rpx;
+					//line-height: 40rpx;
 					.name {
 						overflow: hidden;
 						text-overflow: ellipsis;

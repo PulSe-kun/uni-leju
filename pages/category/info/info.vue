@@ -29,8 +29,38 @@
 		<view class="footer">
 			<view class="service"><image src="../../../static/image/icons/kf.png" mode=""></image></view>
 			<view class="btn">
-				<button type="default">添加到购物车</button>
-				<button type="default">立即购买</button>
+				<button type="default" @tap="goCart">添加到购物车</button>
+				<button type="default" @tap="buy">立即购买</button>
+			</view>
+		</view>
+		<!-- 蒙层 -->
+		<view class="mask" @touchmove.prevent.stop="" v-if="isMaskShow" @tap="isMaskShow = !isMaskShow">
+			<view class="card"  @tap.stop="">
+				<image class="img" :src="info.skuList[current].pic" mode=""></image>
+				<view class="title">{{ info.name }}</view>
+				<image class="close" @tap="close" src="../../../static/image/icons/x.png" mode=""></image>
+				<view class="count">库存数量:{{ info.skuList[current].stock }}</view>
+				<view class="choose">
+					<text class="c-title">商品选择</text>
+					<view class="color">
+						<view class="item" :class="{ active: index == current }" @tap="current = index" v-for="(item, index) in info.skuList" :key="item.id">
+							{{ item.spData | filterGoods }}
+						</view>
+					</view>
+				</view>
+				<view class="advantage">
+					<text class="c-title">特色服务</text>
+					<view class="color">
+						<view class="item">送货上门</view>
+						<view class="item">上门安装</view>
+					</view>
+				</view>
+				<view class="line"></view>
+				<view class="num">
+					<view class="c-title">购买数量</view>
+					<view class="buyCount"><uni-number-box></uni-number-box></view>
+				</view>
+				<button type="default">确定</button>
 			</view>
 		</view>
 	</view>
@@ -47,7 +77,9 @@ export default {
 				img: 'width:90%;display:block;margin:0 auto;height:auto'
 			},
 			activityText: '没有促销使用原价',
-			isCollected: false
+			isCollected: false, //收藏
+			isMaskShow: false, //弹窗
+			current: 0
 		};
 	},
 	onLoad(option) {
@@ -74,6 +106,22 @@ export default {
 			}
 		});
 	},
+	filters: {
+		filterGoods(val) {
+			//检测 字符串类型
+			//将JSON格式的字符串转换回对象
+			if (typeof val == 'string') {
+				var arr = JSON.parse(val);
+				return arr.reduce((total, current) => {
+					return total + current.key + ':' + current.value + '   ';
+				}, '');
+			} else {
+				return val.reduce((total, current) => {
+					return total + current.key + ':' + current.value + '   ';
+				}, '');
+			}
+		}
+	},
 	methods: {
 		//收藏
 		collected() {
@@ -92,8 +140,8 @@ export default {
 				uni.setStorageSync('collected', [this.info.id]);
 				this.isCollected = true;
 				uni.showToast({
-				    title: '添加收藏',
-				    duration: 2000
+					title: '添加收藏',
+					duration: 2000
 				});
 			} else {
 				//先判断本都是由含有当前商品的id
@@ -105,8 +153,8 @@ export default {
 					uni.setStorageSync('collected', collectedList);
 					this.isCollected = false;
 					uni.showToast({
-					    title: '取消收藏',
-					    duration: 2000
+						title: '取消收藏',
+						duration: 2000
 					});
 				} else {
 					//2.2
@@ -114,11 +162,24 @@ export default {
 					uni.setStorageSync('collected', collectedList);
 					this.isCollected = true;
 					uni.showToast({
-					    title: '添加收藏',
-					    duration: 2000
+						title: '添加收藏',
+						duration: 2000
 					});
 				}
 			}
+		},
+		// 添加到购物车
+		goCart() {
+			//控制弹窗显示
+			this.isMaskShow = !this.isMaskShow;
+		},
+		//购买
+		buy() {
+			this.isMaskShow = !this.isMaskShow;
+		},
+		//关闭
+		close() {
+			this.isMaskShow = false;
 		}
 	}
 };
@@ -158,6 +219,7 @@ export default {
 		}
 	}
 	.main {
+		height: 100%;
 		.header {
 			box-sizing: border-box;
 			padding: 70rpx 68rpx;
@@ -255,7 +317,7 @@ export default {
 		bottom: 0;
 		left: 0;
 		width: 100%;
-		z-index: 888;
+		z-index: 800;
 		display: flex;
 		box-sizing: border-box;
 		padding: 0 60rpx;
@@ -283,6 +345,157 @@ export default {
 					background-color: #354e44;
 					color: #fff;
 				}
+			}
+		}
+	}
+	.mask {
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.5);
+		z-index: 888;
+		.card {
+			position: absolute;
+			left: 50%;
+			top: 220rpx;
+			/* #ifdef MP-WEIXIN */
+			top: 140rpx;
+			/* #endif */
+			margin-left: -314rpx;
+			width: 628rpx;
+			height: 926rpx;
+			background: #fff;
+			border-radius: 20px;
+			.title {
+				font-size: 24rpx;
+				color: #3e3e3e;
+				margin-left: 284rpx;
+				margin-top: 84rpx;
+				font-weight: 600;
+				width: 260rpx;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			.close {
+				position: absolute;
+				right: 40rpx;
+				top: 34rpx;
+				width: 48rpx;
+				height: 48rpx;
+			}
+			.img {
+				position: absolute;
+				width: 192rpx;
+				height: 192rpx;
+				left: 62rpx;
+				top: -56rpx;
+				border-radius: 10rpx;
+			}
+			.count {
+				font-size: 24rpx;
+				color: #b0b0b0;
+				margin-top: 6rpx;
+				line-height: 32rpx;
+				margin-left: 284rpx;
+			}
+			.choose {
+				box-sizing: border-box;
+				margin: 28rpx 56rpx;
+				padding: 0 8rpx;
+				.c-title {
+					font-size: 28rpx;
+					color: #3e3e3e;
+					line-height: 40rpx;
+					letter-spacing: 4rpx;
+					font-weight: 600;
+				}
+				.color {
+					display: flex;
+					flex-direction: column;
+					height: 170rpx;
+					width: 100%;
+					overflow: auto;
+				}
+				.item {
+					box-sizing: border-box;
+					border: 4rpx solid transparent;
+					float: left;
+					padding-left: 10rpx;
+					height: 60rpx;
+					color: #3e3e3e;
+					font-size: 26rpx;
+					line-height: 52rpx;
+					background: #f2f4f3;
+					border-radius: 20rpx;
+					margin: 10rpx;
+					letter-spacing: 4rpx;
+				}
+				.active {
+					border: 2px #354e44 solid;
+				}
+			}
+			.advantage {
+				box-sizing: border-box;
+				margin: 28rpx 56rpx;
+				padding: 0 8rpx;
+				.c-title {
+					font-size: 28rpx;
+					color: #3e3e3e;
+					line-height: 40rpx;
+					letter-spacing: 4rpx;
+					font-weight: 600;
+				}
+				.color {
+					display: flex;
+					flex-direction: column;
+					height: 170rpx;
+					width: 100%;
+				}
+				.item {
+					box-sizing: border-box;
+					border: 4rpx solid transparent;
+					float: left;
+					padding-left: 10rpx;
+					height: 60rpx;
+					color: #3e3e3e;
+					font-size: 26rpx;
+					line-height: 52rpx;
+					background: #f2f4f3;
+					border-radius: 20rpx;
+					margin: 10rpx;
+					letter-spacing: 4rpx;
+				}
+			}
+			.line {
+				width: 530rpx;
+				height: 3rpx;
+				background-color: #f2f4f3;
+				margin: 30rpx auto;
+			}
+			.num {
+				box-sizing: border-box;
+				padding: 0 56rpx;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				.c-title {
+					font-size: 28rpx;
+					color: #3e3e3e;
+					line-height: 40rpx;
+					letter-spacing: 4rpx;
+					font-weight: 600;
+				}
+			}
+			button{
+				margin-top: 60rpx;
+				font-size: 30rpx;
+				width: 240rpx;
+				border-radius: 24rpx;
+				background-color: #354e44;
+				color: #FFFFFF;
 			}
 		}
 	}

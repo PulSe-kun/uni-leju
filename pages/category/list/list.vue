@@ -30,7 +30,7 @@ export default {
 	data() {
 		return {
 			start: 1,
-			limit: 4,
+			limit: 6,
 			productList: [],
 			total: 0,
 			id: '',
@@ -200,18 +200,20 @@ export default {
 		// display: flex;
 		// justify-content: space-between;
 		// flex-wrap: wrap;
+		// padding: 120rpx 30rpx;
 		.list {
 			// width: 48%;
 			// background-color: #fff;
-			height: 430rpx;
+			// height: 430rpx;
 			// margin: 20rpx 0;
 			// border-radius: 8rpx;
 			float: left;
-			width: 316rpx;
+			width: 320rpx;
+			height: 430rpx;
 			margin-left: 40rpx;
 			margin-bottom: 40rpx;
 			background-color: #fff;
-			border-radius: 4px;
+			border-radius: 8rpx;
 			image {
 				width: 100%;
 				display: block;

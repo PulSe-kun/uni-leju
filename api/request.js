@@ -6,6 +6,9 @@ var fun = function(config){
 		uni.request({
 			url:baseUrl + config.url,
 			method:config.method,
+			header:{
+				token:uni.getStorageSync("leju-token")
+			},
 			data:config.data,
 			timeout:5000,
 			success(res){

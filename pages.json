@@ -64,9 +64,12 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
+                "enablePullDownRefresh": false,
+				// 编译到h5平台时去掉页面标题
+				"h5": {
+					"titleNView": false
+				}
+            } 
         }
         ,{	
             "path" : "pages/category/info/info",
@@ -76,6 +79,18 @@
                 "navigationBarTextStyle": "white",
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/mine/register/register",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false,
+				"h5": {
+					"titleNView": false
+				}
             }
             
         }
