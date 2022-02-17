@@ -27,7 +27,7 @@
 .kindlist .header.data-v-f8742e52 {
   position: fixed;
   left: 0;
-  top: 0;
+  top: 0px;
   width: 100%;
   height: 62rpx;
   display: flex;

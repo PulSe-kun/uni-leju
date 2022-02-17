@@ -9,7 +9,7 @@ function doLogin(data){
 	})
 }
 
-function getMemberInfo(data){
+function getMemberInfo(){
 	return request({
 		url:`/lejuClient/login/getMemberInfo`
 	})

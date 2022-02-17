@@ -162,6 +162,7 @@
   background-color: #fff;
   align-items: center;
   height: 120rpx;
+  height: 130rpx;
 }
 .product .footer .service.data-v-440ef2d7 {
   width: 50rpx;
@@ -177,7 +178,7 @@
   justify-content: space-around;
 }
 .product .footer .btn button.data-v-440ef2d7 {
-  font-size: 30rpx;
+  font-size: 26rpx;
   width: 240rpx;
   background-color: #e2e2e2;
 }
@@ -332,6 +333,6 @@
   width: 240rpx;
   border-radius: 24rpx;
   background-color: #354e44;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 

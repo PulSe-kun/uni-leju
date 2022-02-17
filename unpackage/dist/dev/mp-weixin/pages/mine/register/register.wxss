@@ -52,6 +52,16 @@
   margin-top: 30rpx;
   font-size: 36rpx;
 }
+.register .verification.data-v-0aea9fe8 {
+  position: relative;
+}
+.register .verification .r-code.data-v-0aea9fe8 {
+  position: absolute;
+  top: 20%;
+  right: 40rpx;
+  font-size: 20rpx;
+  z-index: 999;
+}
 .register .footer.data-v-0aea9fe8 {
   display: flex;
   align-items: center;
@@ -70,6 +80,9 @@
   height: 90rpx;
 }
 .register.data-v-0aea9fe8  .uni-checkbox-input {
+  border-radius: 50%;
+}
+.register.data-v-0aea9fe8  .wx-checkbox-input {
   border-radius: 50%;
 }
 

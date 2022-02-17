@@ -30,5 +30,10 @@ function lejuLatestProducts(){
 		url:`/lejuClient/home/lejuLatestProducts`
 	})
 }
+function saleMostProducts(){//销量最高
+	return request({
+		url:`/lejuClient/home/saleMostProducts`
+	})
+}
 
-export{bannerAds,findCategory,recommendList,hotList,lejuLatestProducts}
+export{bannerAds,findCategory,recommendList,hotList,lejuLatestProducts,saleMostProducts}

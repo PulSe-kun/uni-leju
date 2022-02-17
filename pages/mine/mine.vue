@@ -3,10 +3,15 @@
 		<!-- 头部 -->
 		<view class="header">
 			<view class="area">
-				<image class="avatar" :src="userInfo.icon" mode=""></image>
+				<image class="avatar" :src="userInfo.icon" mode="" @tap="editUser"></image>
 				<view class="info">
 					<view class="nickname">{{ userInfo.nickname }}</view>
-					<view class="username">用户名:{{ userInfo.username }}</view>
+					<view class="username" v-if="userInfo.username">用户名:{{ userInfo.username }}</view>
+					<view class="" v-if="flag">Hi , 您还没有登陆呢!</view>
+					<view class="btn" v-if="flag">
+						<button type="default" @tap="register">注册</button>
+						<button type="default" @tap="login">登陆</button>
+					</view>
 				</view>
 			</view>
 		</view>
@@ -56,6 +61,9 @@
 				<text class="text">地址</text>
 			</view>
 			<view class="items">
+				<!-- <view class="img">
+					<uni-icons type="wallet" size="30"></uni-icons>
+				</view> -->
 				<image class="img" src="../../static/image/icons/card.png" mode=""></image>
 				<text class="text">卡包</text>
 			</view>
@@ -77,10 +85,11 @@ import mix from '@/mixins/index.js';
 export default {
 	data() {
 		return {
-			userInfo: {}
+			userInfo: {},
+			flag: true
 		};
 	},
-	mixins: [mix],//混入 复用
+	mixins: [mix], //混入 复用
 	// 第一次进入该页面会执行的钩子函数 返回也不会执行
 	onLoad() {},
 	//每次进到该页面 都执行的函数
@@ -88,6 +97,7 @@ export default {
 		if (this.checkLogin()) {
 			var userInfo = uni.getStorageSync('userInfo');
 			this.userInfo = userInfo;
+			this.flag = false;
 		}
 		//根据本地token进行判断有没有登录
 		// var token = uni.getStorageSync('leju-token');
@@ -107,12 +117,36 @@ export default {
 		// 		}
 		// 	});
 		// }
+	},
+	methods: {
+		//跳入更新用户信息页面
+		editUser() {
+			uni.navigateTo({
+				//保留当前页面，跳转到应用内的某个页面
+				url: './editUser/editUser'
+			});
+		},
+		//跳回注册页面
+		register() {
+			uni.reLaunch({
+				//关闭所有页面，打开到应用内的某个页面。
+				url: './register/register'
+			});
+		},
+		//跳回登陆页面
+		login() {
+			uni.reLaunch({
+				url: './login/login'
+			});
+		}
 	}
 };
 </script>
 
 <style lang="scss" scoped>
 .mine {
+	// width: 90%;
+	// margin: 0 auto;
 	padding: 0 40rpx;
 	.header {
 		display: flex;
@@ -124,7 +158,7 @@ export default {
 			display: flex;
 			justify-content: flex-start;
 			align-items: center;
-			height: 150rpx;
+			height: 100%;
 			.avatar {
 				display: block;
 				width: 150rpx;
@@ -142,6 +176,27 @@ export default {
 				justify-content: space-around;
 				box-sizing: border-box;
 				padding: 14rpx 0;
+				.btn {
+					display: flex;
+					justify-content: space-around;
+					align-items: center;
+					width: 360rpx;
+					padding-top: 30rpx;
+				}
+				button {
+					font-size: 20rpx;
+					width: 150rpx;
+					height: 100%;
+					background-color: #354e44;
+					color: #fff;
+					margin-left: 0;
+					&:first-child {
+						background-color: #fff;
+						color: #333;
+						border: 1px solid #354e44;
+						box-sizing: border-box;
+					}
+				}
 			}
 			.nickname {
 				font-size: 40rpx;
@@ -170,29 +225,30 @@ export default {
 		}
 
 		.navs {
-			padding: 0 54rpx;
+			padding: 0 30rpx;
 			box-sizing: border-box;
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
 			text-align: center;
-
-			.icon {
-				width: 50rpx;
-				height: 50rpx;
-				margin-top: 20rpx;
-			}
-
-			.text {
-				font-size: 26rpx;
-				line-height: 37rpx;
-				text-align: center;
+			.nav-item {
+				width: 30%;
+				.icon {
+					width: 50rpx;
+					height: 50rpx;
+					margin-top: 20rpx;
+				}
+				.text {
+					font-size: 26rpx;
+					line-height: 40rpx;
+					text-align: center;
+				}
 			}
 		}
 	}
 	.list {
 		width: 100%;
-		margin-top: 60rpx;
+		margin-top: 40rpx;
 		background-color: #fff;
 		border-radius: 20rpx;
 		text-align: center;

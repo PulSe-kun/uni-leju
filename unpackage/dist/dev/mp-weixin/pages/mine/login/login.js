@@ -96,7 +96,7 @@ var components
 try {
   components = {
     uniIcons: function() {
-      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 94))
+      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 129))
     }
   }
 } catch (e) {
@@ -184,7 +184,11 @@ var _index = __webpack_require__(/*! @/api/mine/login/index.js */ 73);function _
   },
   methods: {
     //找回密码
-    retrievePassword: function retrievePassword() {},
+    retrievePassword: function retrievePassword() {
+      uni.navigateTo({
+        url: "../password/password" });
+
+    },
     //注册
     register: function register() {
       uni.navigateTo({
@@ -195,15 +199,58 @@ var _index = __webpack_require__(/*! @/api/mine/login/index.js */ 73);function _
       this.isPassword = !this.isPassword;
     },
     //登陆
-    login: function login() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var res, res2;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
-                _this.isAddClass = true;
-                _this.loading = true;_context.next = 4;return (
+    login: function login() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var res, _this, res2;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                _this2.isAddClass = true;
+                _this2.loading = true;_context.next = 4;return (
                   (0, _index.doLogin)({
-                    password: _this.password,
-                    username: _this.username }));case 4:res = _context.sent;
+                    password: _this2.password,
+                    username: _this2.username }));case 4:res = _context.sent;if (!(
 
-                uni.setStorageSync('leju-token', res.data.token);_context.next = 8;return (
-                  (0, _index.getMemberInfo)());case 8:res2 = _context.sent; //注意 请求在header中
+                _this2.username.length == '')) {_context.next = 10;break;}
+                uni.showToast({
+                  icon: 'none',
+                  position: 'bottom',
+                  title: '用户名不能为空' });
+
+                _this2.isAddClass = false;
+                _this2.loading = false;return _context.abrupt("return");case 10:if (!(
+
+
+                _this2.password.length == '')) {_context.next = 15;break;}
+                uni.showToast({
+                  icon: 'none',
+                  position: 'bottom',
+                  title: '密码不能为空' });
+
+                _this2.isAddClass = false;
+                _this2.loading = false;return _context.abrupt("return");case 15:
+
+
+                console.log(res);if (
+                res.success) {_context.next = 24;break;}
+                _this = _this2;
+                _this.isAddClass = true;
+                _this.loading = true;
+                setTimeout(function () {
+                  _this.isAddClass = false;
+                  _this.loading = false;
+                }, 2000);
+                uni.showToast({
+                  icon: 'error',
+                  title: '登录失败,请检查用户名和密码!' });
+
+
+                uni.showToast({
+                  title: '登录失败,请检查用户名和密码',
+                  icon: 'none',
+                  duration: 800 });return _context.abrupt("return");case 24:
+
+
+
+
+                uni.setStorageSync('leju-token', res.data.token);
+                console.log('leju-token');_context.next = 28;return (
+                  (0, _index.getMemberInfo)());case 28:res2 = _context.sent; //注意 请求在header中
                 console.log(res);
                 uni.setStorageSync('userInfo', res2.data.userInfo);
                 uni.showToast({
@@ -211,12 +258,19 @@ var _index = __webpack_require__(/*! @/api/mine/login/index.js */ 73);function _
                   icon: 'success',
                   duration: 800 });
 
+
+                uni.showToast({
+                  title: '前往个人中心',
+                  icon: 'success',
+                  duration: 800 });
+
+
                 //定时器 0.8秒后跳转
                 setTimeout(function () {
                   uni.switchTab({
                     url: '../mine' });
 
-                }, 800);case 13:case "end":return _context.stop();}}}, _callee);}))();
+                }, 800);case 34:case "end":return _context.stop();}}}, _callee);}))();
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

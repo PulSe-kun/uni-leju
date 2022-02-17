@@ -35,7 +35,7 @@
 		</view>
 		<!-- 蒙层 -->
 		<view class="mask" @touchmove.prevent.stop="" v-if="isMaskShow" @tap="isMaskShow = !isMaskShow">
-			<view class="card"  @tap.stop="">
+			<view class="card" @tap.stop="">
 				<image class="img" :src="info.skuList[current].pic" mode=""></image>
 				<view class="title">{{ info.name }}</view>
 				<image class="close" @tap="close" src="../../../static/image/icons/x.png" mode=""></image>
@@ -58,16 +58,17 @@
 				<view class="line"></view>
 				<view class="num">
 					<view class="c-title">购买数量</view>
-					<view class="buyCount"><uni-number-box></uni-number-box></view>
+					<view class="buyCount"><uni-number-box v-model="vModelValue"></uni-number-box></view>
 				</view>
-				<button type="default">确定</button>
+				<button type="default" @tap="order">确定</button>
 			</view>
 		</view>
 	</view>
 </template>
 
 <script>
-import { productDetail } from '@/api/category/info/index.js';
+import { productDetail, addCart, addPreOrder } from '@/api/category/info/index.js';
+import mix from '@/mixins/index.js';
 export default {
 	data() {
 		return {
@@ -79,9 +80,12 @@ export default {
 			activityText: '没有促销使用原价',
 			isCollected: false, //收藏
 			isMaskShow: false, //弹窗
-			current: 0
+			current: 0,
+			currentTap: '', //根据状态来判断是添加购物车还是立即下单
+			vModelValue: ''
 		};
 	},
+	mixins: [mix],
 	onLoad(option) {
 		productDetail(option.id).then(res => {
 			console.log(res);
@@ -123,6 +127,40 @@ export default {
 		}
 	},
 	methods: {
+		//下订单
+		order() {
+			//注意 只有登陆才能下单
+			if (this.checkLogin()) {
+				if (this.currentTap) {
+					console.log('立即购买');
+					addPreOrder({
+						orderItemList: [
+							{
+								productId: this.info.id,
+								productQuantity: this.vModelValue,
+								productSkuId: this.info.skuList[this.current].id
+							}
+						]
+					}).then(res => {
+						uni.navigateTo({
+							url: `/pages/order/order?id=${res.data.orderId}`
+						});
+					});
+				} else {
+					console.log('添加购物车');
+					addCart({
+						productId: this.info.id,
+						productSkuId: this.info.skuList[this.current].id,
+						quantity: this.vModelValue
+					}).then(res => {
+						uni.showToast({
+							title: '加入购物车',
+							duration: 1000
+						});
+					});
+				}
+			}
+		},
 		//收藏
 		collected() {
 			// 数据保存在本地 商品id
@@ -172,10 +210,12 @@ export default {
 		goCart() {
 			//控制弹窗显示
 			this.isMaskShow = !this.isMaskShow;
+			this.currentTap = 0;
 		},
 		//购买
 		buy() {
 			this.isMaskShow = !this.isMaskShow;
+			this.currentTap = 1;
 		},
 		//关闭
 		close() {
@@ -325,6 +365,9 @@ export default {
 		background-color: #fff;
 		align-items: center;
 		height: 120rpx;
+		/* #ifdef MP-WEIXIN */
+		height: 130rpx;
+		/* #endif */
 		.service {
 			width: 50rpx;
 			height: 40rpx;
@@ -338,7 +381,7 @@ export default {
 			display: flex;
 			justify-content: space-around;
 			button {
-				font-size: 30rpx;
+				font-size: 26rpx;
 				width: 240rpx;
 				background-color: #e2e2e2;
 				&:last-child {
@@ -489,13 +532,13 @@ export default {
 					font-weight: 600;
 				}
 			}
-			button{
+			button {
 				margin-top: 60rpx;
 				font-size: 30rpx;
 				width: 240rpx;
 				border-radius: 24rpx;
 				background-color: #354e44;
-				color: #FFFFFF;
+				color: #ffffff;
 			}
 		}
 	}

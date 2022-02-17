@@ -160,11 +160,12 @@ export default {
 	.header {
 		position: fixed;
 		left: 0;
-		top: 0;
+		//自定义导航栏高度
+		top: var(--window-top);
 		// 注意这里用到了条件编译
-		/* #ifdef H5 */
-		top: 84rpx;
-		/* #endif */
+		// #ifdef H5 */
+		// top: 84rpx;
+		// /* #endif
 		width: 100%;
 		height: 62rpx;
 		display: flex;

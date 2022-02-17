@@ -1,5 +1,7 @@
 {
   "navigationBarTitleText": "",
+  "navigationBarBackgroundColor": "#354e44",
+  "navigationBarTextStyle": "white",
   "enablePullDownRefresh": false,
   "usingComponents": {
     "uni-forms": "/uni_modules/uni-forms/components/uni-forms/uni-forms",

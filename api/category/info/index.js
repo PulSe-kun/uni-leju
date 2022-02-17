@@ -6,4 +6,18 @@ function productDetail(id) {
 		url: `/lejuClient/product/productDetail/${id}`,
 	})
 }
-export {productDetail}
+function addCart(data) {//添加购物车
+	return request({
+		url: `/lejuClient/cart/addCart`,
+		method:'post',
+		data
+	})
+}
+function addPreOrder(data) {//生成确认订单
+	return request({
+		url: `/lejuClient/order/addPreOrder`,
+		method:'post',
+		data
+	})
+}
+export {productDetail,addCart,addPreOrder}

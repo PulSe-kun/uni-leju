@@ -205,6 +205,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
 var _index = _interopRequireDefault(__webpack_require__(/*! @/mixins/index.js */ 44));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
 //
@@ -279,10 +287,18 @@ var _index = _interopRequireDefault(__webpack_require__(/*! @/mixins/index.js */
 //
 //
 //
-var _default = { data: function data() {return { userInfo: {} };}, mixins: [_index.default], //混入 复用
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = { data: function data() {return { userInfo: {}, flag: true };}, mixins: [_index.default], //混入 复用
   // 第一次进入该页面会执行的钩子函数 返回也不会执行
   onLoad: function onLoad() {}, //每次进到该页面 都执行的函数
-  onShow: function onShow() {if (this.checkLogin()) {var userInfo = uni.getStorageSync('userInfo');this.userInfo = userInfo;} //根据本地token进行判断有没有登录
+  onShow: function onShow() {if (this.checkLogin()) {var userInfo = uni.getStorageSync('userInfo');this.userInfo = userInfo;this.flag = false;} //根据本地token进行判断有没有登录
     // var token = uni.getStorageSync('leju-token');
     // if (token) {
     // 	var userInfo = uni.getStorageSync('userInfo');
@@ -300,7 +316,12 @@ var _default = { data: function data() {return { userInfo: {} };}, mixins: [_ind
     // 		}
     // 	});
     // }
-  } };exports.default = _default;
+  }, methods: { //跳入更新用户信息页面
+    editUser: function editUser() {uni.navigateTo({ //保留当前页面，跳转到应用内的某个页面
+        url: './editUser/editUser' });}, //跳回注册页面
+    register: function register() {uni.reLaunch({ //关闭所有页面，打开到应用内的某个页面。
+        url: './register/register' });}, //跳回登陆页面
+    login: function login() {uni.reLaunch({ url: './login/login' });} } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

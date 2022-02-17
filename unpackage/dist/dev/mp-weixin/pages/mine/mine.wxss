@@ -38,7 +38,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  height: 150rpx;
+  height: 100%;
 }
 .mine .header .area .avatar.data-v-dcbcfe34 {
   display: block;
@@ -57,6 +57,27 @@
   justify-content: space-around;
   box-sizing: border-box;
   padding: 14rpx 0;
+}
+.mine .header .area .info .btn.data-v-dcbcfe34 {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 360rpx;
+  padding-top: 30rpx;
+}
+.mine .header .area .info button.data-v-dcbcfe34 {
+  font-size: 20rpx;
+  width: 150rpx;
+  height: 100%;
+  background-color: #354e44;
+  color: #fff;
+  margin-left: 0;
+}
+.mine .header .area .info button.data-v-dcbcfe34:first-child {
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #354e44;
+  box-sizing: border-box;
 }
 .mine .header .area .nickname.data-v-dcbcfe34 {
   font-size: 40rpx;
@@ -82,26 +103,29 @@
   margin: 0 54rpx;
 }
 .mine .my-orders .navs.data-v-dcbcfe34 {
-  padding: 0 54rpx;
+  padding: 0 30rpx;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
   text-align: center;
 }
-.mine .my-orders .navs .icon.data-v-dcbcfe34 {
+.mine .my-orders .navs .nav-item.data-v-dcbcfe34 {
+  width: 30%;
+}
+.mine .my-orders .navs .nav-item .icon.data-v-dcbcfe34 {
   width: 50rpx;
   height: 50rpx;
   margin-top: 20rpx;
 }
-.mine .my-orders .navs .text.data-v-dcbcfe34 {
+.mine .my-orders .navs .nav-item .text.data-v-dcbcfe34 {
   font-size: 26rpx;
-  line-height: 37rpx;
+  line-height: 40rpx;
   text-align: center;
 }
 .mine .list.data-v-dcbcfe34 {
   width: 100%;
-  margin-top: 60rpx;
+  margin-top: 40rpx;
   background-color: #fff;
   border-radius: 20rpx;
   text-align: center;

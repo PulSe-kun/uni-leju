@@ -1,55 +1,60 @@
 {
-    "pages": [
-        "pages/home/home",
-        "pages/category/category",
-        "pages/find/find",
-        "pages/mine/mine",
-        "pages/index/index",
-        "pages/category/list/list",
-        "pages/mine/login/login",
-        "pages/category/info/info",
-        "pages/mine/register/register"
-    ],
-    "subPackages": [],
-    "window": {
-        "navigationBarTextStyle": "black",
-        "navigationBarTitleText": "uni-app",
-        "navigationBarBackgroundColor": "#F8F8F8",
-        "backgroundColor": "#F8F8F8"
-    },
-    "tabBar": {
-        "color": "#999999",
-        "selectedColor": "#3D4C46",
-        "borderStyle": "white",
-        "backgroundColor": "#ffffff",
-        "list": [
-            {
-                "pagePath": "pages/home/home",
-                "iconPath": "static/image/icons/home.png",
-                "selectedIconPath": "static/image/icons/home-active.png",
-                "text": "首页"
-            },
-            {
-                "pagePath": "pages/category/category",
-                "iconPath": "static/image/icons/kind.png",
-                "selectedIconPath": "static/image/icons/kind-active.png",
-                "text": "分类"
-            },
-            {
-                "pagePath": "pages/find/find",
-                "iconPath": "static/image/icons/find.png",
-                "selectedIconPath": "static/image/icons/find-active.png",
-                "text": "发现"
-            },
-            {
-                "pagePath": "pages/mine/mine",
-                "iconPath": "static/image/icons/mine.png",
-                "selectedIconPath": "static/image/icons/mine-active.png",
-                "text": "我的"
-            }
-        ]
-    },
-    "permission": {},
-    "usingComponents": {},
-    "sitemapLocation": "sitemap.json"
+  "pages": [
+    "pages/home/home",
+    "pages/category/category",
+    "pages/find/find",
+    "pages/mine/mine",
+    "pages/index/index",
+    "pages/category/list/list",
+    "pages/mine/login/login",
+    "pages/category/info/info",
+    "pages/mine/register/register",
+    "pages/mine/password/password",
+    "pages/mine/editUser/editUser",
+    "pages/order/order",
+    "pages/order/address/address",
+    "pages/order/pay/pay",
+    "pages/order/addAddress/addAddress"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#354e44",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#3D4C46",
+    "borderStyle": "white",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "iconPath": "static/image/icons/home.png",
+        "selectedIconPath": "static/image/icons/home-active.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/category/category",
+        "iconPath": "static/image/icons/kind.png",
+        "selectedIconPath": "static/image/icons/kind-active.png",
+        "text": "分类"
+      },
+      {
+        "pagePath": "pages/find/find",
+        "iconPath": "static/image/icons/find.png",
+        "selectedIconPath": "static/image/icons/find-active.png",
+        "text": "发现"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "iconPath": "static/image/icons/mine.png",
+        "selectedIconPath": "static/image/icons/mine-active.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "permission": {},
+  "usingComponents": {}
 }

@@ -4,7 +4,7 @@
 		<view class="write">
 			<input type="text" v-model="username" placeholder="用户名/电话" />
 			<input v-model="password" :password="isPassword" placeholder="密码" />
-			<uni-icons class="eye" type="eye-slash" size="24" @tap="taggleIcon"></uni-icons>
+			<uni-icons class="eye" :type="isPassword ? 'eye-slash' : 'eye'" size="24" @tap="taggleIcon"></uni-icons>
 		</view>
 		<button :loading="loading" type="default" @tap="login" :class="{ loginBtn: isAddClass }"><view v-if="!isAddClass">登录</view></button>
 		<view class="text">
@@ -29,7 +29,11 @@ export default {
 	},
 	methods: {
 		//找回密码
-		retrievePassword() {},
+		retrievePassword() {
+			uni.navigateTo({
+				url: `../password/password`
+			});
+		},
 		//注册
 		register() {
 			uni.navigateTo({
@@ -47,7 +51,50 @@ export default {
 				password: this.password,
 				username: this.username
 			});
+			if (this.username.length == '') {
+				uni.showToast({
+					icon: 'none',
+					position: 'bottom',
+					title: '用户名不能为空'
+				});
+				this.isAddClass = false;
+				this.loading = false;
+				return;
+			}
+			if (this.password.length == '') {
+				uni.showToast({
+					icon: 'none',
+					position: 'bottom',
+					title: '密码不能为空'
+				});
+				this.isAddClass = false;
+				this.loading = false;
+				return;
+			}
+			console.log(res);
+			if (!res.success) {
+				var _this = this;
+				_this.isAddClass = true;
+				_this.loading = true;
+				setTimeout(function() {
+					_this.isAddClass = false;
+					_this.loading = false;
+				}, 2000);
+				uni.showToast({
+					icon: 'error',
+					title: '登录失败,请检查用户名和密码!'
+				});
+				// #ifdef MP-WEIXIN
+				uni.showToast({
+					title: '登录失败,请检查用户名和密码',
+					icon: 'none',
+					duration: 800
+				});
+				// #endif
+				return;
+			}
 			uni.setStorageSync('leju-token', res.data.token);
+			console.log('leju-token');
 			var res2 = await getMemberInfo(); //注意 请求在header中
 			console.log(res);
 			uni.setStorageSync('userInfo', res2.data.userInfo);
@@ -56,6 +103,13 @@ export default {
 				icon: 'success',
 				duration: 800
 			});
+			// #ifdef MP-WEIXIN
+			uni.showToast({
+				title: '前往个人中心',
+				icon: 'success',
+				duration: 800
+			});
+			// #endif
 			//定时器 0.8秒后跳转
 			setTimeout(function() {
 				uni.switchTab({

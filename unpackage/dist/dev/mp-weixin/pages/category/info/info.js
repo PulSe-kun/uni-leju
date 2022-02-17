@@ -96,13 +96,13 @@ var components
 try {
   components = {
     uniIcons: function() {
-      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 94))
+      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 129))
     },
     mpHtml: function() {
-      return Promise.all(/*! import() | uni_modules/mp-html/components/mp-html/mp-html */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/mp-html/components/mp-html/mp-html")]).then(__webpack_require__.bind(null, /*! @/uni_modules/mp-html/components/mp-html/mp-html.vue */ 113))
+      return Promise.all(/*! import() | uni_modules/mp-html/components/mp-html/mp-html */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/mp-html/components/mp-html/mp-html")]).then(__webpack_require__.bind(null, /*! @/uni_modules/mp-html/components/mp-html/mp-html.vue */ 148))
     },
     uniNumberBox: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-number-box/components/uni-number-box/uni-number-box */ "uni_modules/uni-number-box/components/uni-number-box/uni-number-box").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-number-box/components/uni-number-box/uni-number-box.vue */ 121))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-number-box/components/uni-number-box/uni-number-box */ "uni_modules/uni-number-box/components/uni-number-box/uni-number-box").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-number-box/components/uni-number-box/uni-number-box.vue */ 156))
     }
   }
 } catch (e) {
@@ -265,7 +265,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _index = __webpack_require__(/*! @/api/category/info/index.js */ 82); //
+var _index = __webpack_require__(/*! @/api/category/info/index.js */ 82);
+var _index2 = _interopRequireDefault(__webpack_require__(/*! @/mixins/index.js */ 44));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
 //
 //
@@ -336,26 +337,63 @@ var _index = __webpack_require__(/*! @/api/category/info/index.js */ 82); //
 var _default = { data: function data() {return { info: {}, //富文本插件 修改样式
       htmlStyle: { img: 'width:90%;display:block;margin:0 auto;height:auto' }, activityText: '没有促销使用原价', isCollected: false, //收藏
       isMaskShow: false, //弹窗
-      current: 0 };}, onLoad: function onLoad(option) {var _this = this;(0, _index.productDetail)(option.id).then(function (res) {console.log(res);_this.info = res.data.product; //动态设置导航标题
+      current: 0, currentTap: '', //根据状态来判断是添加购物车还是立即下单
+      vModelValue: '' };}, mixins: [_index2.default], onLoad: function onLoad(option) {var _this = this;(0, _index.productDetail)(option.id).then(function (res) {console.log(res);_this.info = res.data.product; //动态设置导航标题
       uni.setNavigationBarTitle({ title: res.data.product.name });var collectedList = uni.getStorageSync('collected');if (!collectedList) {_this.isCollected = false;} else {//先判断本都是由含有当前商品的id
         var item = collectedList.find(function (ele) {return ele == _this.info.id;});if (item) {//2.1
           _this.isCollected = true;} else {//2.2
           _this.isCollected = false;}}});}, filters: { filterGoods: function filterGoods(val) {//检测 字符串类型
       //将JSON格式的字符串转换回对象
-      if (typeof val == 'string') {var arr = JSON.parse(val);return arr.reduce(function (total, current) {return total + current.key + ':' + current.value + '   ';}, '');} else {return val.reduce(function (total, current) {return total + current.key + ':' + current.value + '   ';}, '');}} }, methods: { //收藏
-    collected: function collected() {var _this2 = this; // 数据保存在本地 商品id
+      if (typeof val == 'string') {var arr = JSON.parse(val);return arr.reduce(function (total, current) {return total + current.key + ':' + current.value + '   ';}, '');} else {return val.reduce(function (total, current) {return total + current.key + ':' + current.value + '   ';}, '');}} }, methods: { //下订单
+    order: function order() {//注意 只有登陆才能下单
+      if (this.checkLogin()) {if (this.currentTap) {console.log('立即购买');(0, _index.addPreOrder)({ orderItemList: [{ productId: this.info.id, productQuantity: this.vModelValue, productSkuId: this.info.skuList[this.current].id }] }).then(function (res) {uni.navigateTo({ url: "/pages/order/order?id=".concat(res.data.orderId) });});} else {console.log('添加购物车');(0, _index.addCart)({
+            productId: this.info.id,
+            productSkuId: this.info.skuList[this.current].id,
+            quantity: this.vModelValue }).
+          then(function (res) {
+            uni.showToast({
+              title: '加入购物车',
+              duration: 1000 });
+
+          });
+        }
+      }
+    },
+    //收藏
+    collected: function collected() {var _this2 = this;
+      // 数据保存在本地 商品id
       //console.log('收藏');
       //注意收藏的是数组类型
       //uni 没有直接对本地数据修改的api
       //需要通过一个新的数据 再用新的数据覆盖本地的数据完成修改功能
-      var collectedList = uni.getStorageSync('collected'); // collectedList
+      var collectedList = uni.getStorageSync('collected');
+      // collectedList
       // 1. 本地没数据 点击之后 把数据保存在本地
       // 2. 本地有数据 可以考虑向本地塞入对应的数据
       // 2.1 如果需要收藏的已经保存在本地 点击执行取消收藏
       // 2.2 如果本地的数据中没有当前商品id 点击执行收藏操作
-      if (!collectedList) {uni.setStorageSync('collected', [this.info.id]);this.isCollected = true;uni.showToast({ title: '添加收藏', duration: 2000 });} else {//先判断本都是由含有当前商品的id
-        var item = collectedList.find(function (ele) {return ele == _this2.info.id;});if (item) {//2.1
-          var index = collectedList.findIndex(function (ele) {return ele == _this2.info.id;});collectedList.splice(index, 1);uni.setStorageSync('collected', collectedList);this.isCollected = false;uni.showToast({ title: '取消收藏', duration: 2000 });} else {//2.2
+      if (!collectedList) {
+        uni.setStorageSync('collected', [this.info.id]);
+        this.isCollected = true;
+        uni.showToast({
+          title: '添加收藏',
+          duration: 2000 });
+
+      } else {
+        //先判断本都是由含有当前商品的id
+        var item = collectedList.find(function (ele) {return ele == _this2.info.id;});
+        if (item) {
+          //2.1
+          var index = collectedList.findIndex(function (ele) {return ele == _this2.info.id;});
+          collectedList.splice(index, 1);
+          uni.setStorageSync('collected', collectedList);
+          this.isCollected = false;
+          uni.showToast({
+            title: '取消收藏',
+            duration: 2000 });
+
+        } else {
+          //2.2
           collectedList.push(this.info.id);
           uni.setStorageSync('collected', collectedList);
           this.isCollected = true;
@@ -370,10 +408,12 @@ var _default = { data: function data() {return { info: {}, //富文本插件 修
     goCart: function goCart() {
       //控制弹窗显示
       this.isMaskShow = !this.isMaskShow;
+      this.currentTap = 0;
     },
     //购买
     buy: function buy() {
       this.isMaskShow = !this.isMaskShow;
+      this.currentTap = 1;
     },
     //关闭
     close: function close() {

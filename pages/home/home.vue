@@ -47,7 +47,7 @@
 			<view class="title">热门推荐</view>
 			<view class="list">
 				<swiper class="scroll-series" :display-multiple-items="2" :circular="true" :autoplay="true" :interval="3000" easing-function="linear" :duration="3000">
-					<swiper-item class="series-block" v-for="item in hotList" :key="item.id">
+					<swiper-item class="series-block" v-for="item in hotList" :key="item.id" @tap="goInfo(item.id)">
 						<image class="img" :src="item.pic" mode=""></image>
 						<view class="name">{{ item.brandName }}</view>
 					</swiper-item>
@@ -58,7 +58,7 @@
 		<view class="new">
 			<view class="title">新品推荐</view>
 			<view class="content">
-				<view class="card" v-for="item in newList" :key="item.id">
+				<view class="card" v-for="item in newList" :key="item.id" @tap="goInfo(item.id)">
 					<image class="img" :src="item.pic" mode=""></image>
 					<view class="text">
 						<view class="name">{{ item.name }}</view>
@@ -71,7 +71,7 @@
 		<view class="like">
 			<view class="title">猜你喜欢</view>
 			<view class="main">
-				<view class="list" v-for="item in newList" :key="item.id">
+				<view class="list" v-for="item in mostList" :key="item.id" @tap="goInfo(item.id)">
 					<image :src="item.pic" mode=""></image>
 					<view class="name">{{ item.name }}</view>
 					<view class="text">
@@ -85,7 +85,7 @@
 </template>
 
 <script>
-import { bannerAds, findCategory, recommendList, hotList, lejuLatestProducts } from '@/api/home/index.js';
+import { bannerAds, findCategory, recommendList, hotList, lejuLatestProducts ,saleMostProducts} from '@/api/home/index.js';
 export default {
 	data() {
 		return {
@@ -93,7 +93,8 @@ export default {
 			kindsList: {},
 			recommendList: [],
 			hotList: [],
-			newList: []
+			newList: [],
+			mostList:[]
 		};
 	},
 	// 推荐使用  获取页面初始数据  可以通过options 获取上个页面传递的参数  /home?id=1
@@ -119,12 +120,22 @@ export default {
 			console.log(res);
 			this.newList = res.data.productList;
 		});
+		saleMostProducts().then(res => {
+			console.log(res);
+			this.mostList = res.data.items;
+		});
 	},
 	methods:{
 		goList(id){
 			uni.navigateTo({
 				//注意 uni中没有动态路由
 			    url: `../category/list/list?id=${id}`
+			});
+		},
+		//跳去商品详情页面
+		goInfo(id){
+			uni.navigateTo({
+			    url: `/pages/category/info/info?id=${id}`
 			});
 		}
 	}

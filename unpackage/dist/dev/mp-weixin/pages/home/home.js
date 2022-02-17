@@ -104,7 +104,7 @@ var components
 try {
   components = {
     uniIcons: function() {
-      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 94))
+      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 129))
     }
   }
 } catch (e) {
@@ -332,10 +332,11 @@ var _index = __webpack_require__(/*! @/api/home/index.js */ 18); //
 //
 //
 //
-var _default = { data: function data() {return { bannerList: [], kindsList: {}, recommendList: [], hotList: [], newList: [] };}, // 推荐使用  获取页面初始数据  可以通过options 获取上个页面传递的参数  /home?id=1
+var _default = { data: function data() {return { bannerList: [], kindsList: {}, recommendList: [], hotList: [], newList: [], mostList: [] };}, // 推荐使用  获取页面初始数据  可以通过options 获取上个页面传递的参数  /home?id=1
   onLoad: function onLoad(options) {var _this = this;(0, _index.bannerAds)().then(function (res) {console.log(res);_this.bannerList = res.data.items;});(0, _index.findCategory)('1308336521604599809').then(function (res) {console.log(res);_this.kindsList = res.data.category.children; //console.log(this.kindsList);
-    });(0, _index.recommendList)().then(function (res) {console.log(res);_this.recommendList = res.data.items;});(0, _index.hotList)().then(function (res) {console.log(res);_this.hotList = res.data.items;});(0, _index.lejuLatestProducts)().then(function (res) {console.log(res);_this.newList = res.data.productList;});}, methods: { goList: function goList(id) {uni.navigateTo({ //注意 uni中没有动态路由
-        url: "../category/list/list?id=".concat(id) });} } };exports.default = _default;
+    });(0, _index.recommendList)().then(function (res) {console.log(res);_this.recommendList = res.data.items;});(0, _index.hotList)().then(function (res) {console.log(res);_this.hotList = res.data.items;});(0, _index.lejuLatestProducts)().then(function (res) {console.log(res);_this.newList = res.data.productList;});(0, _index.saleMostProducts)().then(function (res) {console.log(res);_this.mostList = res.data.items;});}, methods: { goList: function goList(id) {uni.navigateTo({ //注意 uni中没有动态路由
+        url: "../category/list/list?id=".concat(id) });}, //跳去商品详情页面
+    goInfo: function goInfo(id) {uni.navigateTo({ url: "/pages/category/info/info?id=".concat(id) });} } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

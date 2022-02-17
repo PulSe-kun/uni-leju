@@ -96,13 +96,13 @@ var components
 try {
   components = {
     uniForms: function() {
-      return Promise.all(/*! import() | uni_modules/uni-forms/components/uni-forms/uni-forms */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms/uni-forms")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms/uni-forms.vue */ 128))
+      return Promise.all(/*! import() | uni_modules/uni-forms/components/uni-forms/uni-forms */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms/uni-forms")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms/uni-forms.vue */ 163))
     },
     uniFormsItem: function() {
-      return Promise.all(/*! import() | uni_modules/uni-forms/components/uni-forms-item/uni-forms-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms-item/uni-forms-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item.vue */ 136))
+      return Promise.all(/*! import() | uni_modules/uni-forms/components/uni-forms-item/uni-forms-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms-item/uni-forms-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item.vue */ 171))
     },
     uniEasyinput: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput */ "uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput.vue */ 143))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput */ "uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput.vue */ 178))
     }
   }
 } catch (e) {
@@ -222,8 +222,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
 var _baseUrl = _interopRequireDefault(__webpack_require__(/*! ../../../api/baseUrl.js */ 20));
-var _register = _interopRequireDefault(__webpack_require__(/*! ../../../api/mine/register/register.js */ 91));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+var _register = __webpack_require__(/*! ../../../api/mine/register/register.js */ 91);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
 //
 //
@@ -285,19 +292,147 @@ var _register = _interopRequireDefault(__webpack_require__(/*! ../../../api/mine
 //
 //
 //
-var _default = { data: function data() {return { //头像
+//
+//
+//
+//
+//
+//
+//
+var _default = { data: function data() {return { //单选
+      isRadio: true, //倒计时
+      second: 30, showText: true, //头像
       avatar: '../../../static/image/icons/leju-logo.png', // 表单数据
-      formData: { phone: '', name: '', nickname: '', //昵称
-        password: '', verification: '' //验证码
+      formData: { phone: '', //手机号
+        name: '', //用户名
+        nickname: '', //昵称
+        password: '', //密码
+        verification: '' //验证码
       }, rules: { // 对name字段进行必填验证
-        name: { rules: [{ required: true, errorMessage: '请输入姓名' }, { minLength: 3, maxLength: 5, errorMessage: '姓名长度在 {minLength} 到 {maxLength} 个字符' }] }, // 对email字段进行必填验证
-        email: { rules: [{ format: 'email', errorMessage: '请输入正确的邮箱地址' }] } } };}, methods: { uploadImg: function uploadImg() {var _this = this; //注意 uni 调用它的api this指向就不在指向vue实例 需要提前保存一下
-      uni.chooseImage({ sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+        name: { rules: [{ required: true, errorMessage: '请输入姓名' }, { minLength: 2, maxLength: 10, errorMessage: '姓名长度在 {minLength} 到 {maxLength} 个字符' } // {
+          // 	pattern: '^[a-zA-Z0-9_-]{2,10}$',
+          // 	errorMessage: '注意用户名 2到10位（字母，数字，下划线，减号）'
+          // }
+          ] }, // 对phone字段进行必填验证
+        phone: { rules: [{ required: true, errorMessage: '请输入手机号' }, { pattern: '^[1]([3-9])[0-9]{9}$', errorMessage: '请输入正确的手机号' }] }, // 对nickname字段进行必填验证
+        nickname: { rules: [{ required: true, errorMessage: '请输入昵称' }, { pattern: "^[\\u4E00-\\u9FA5A-Za-z0-9]{2,20}$", errorMessage: '注意昵称 中文、英文、数字但不包括下划线等符号' }] }, // 对password字段进行必填验证
+        password: { rules: [{ required: true, errorMessage: '请输入密码' }, { pattern: '^[a-zA-Z]\\w{5,17}$', errorMessage: '以字母开头，长度在6~18之间' }] }, // 对verification字段进行必填验证
+        verification: { rules: [{ required: true, errorMessage: '请输入验证码' }, { format: 'number	', errorMessage: '验证码错误' }] } } };
+
+
+
+
+  },
+  onLoad: function onLoad() {},
+  methods: {
+    //发送验证码 倒计时
+    sendCode: function sendCode() {var _this2 = this;
+      this.showText = false;
+      var interval = setInterval(function () {
+        var times = --_this2.second;
+        _this2.second = times < 10 ? '0' + times : times; //小于10秒补 0
+      }, 1000);
+      setTimeout(function () {
+        clearInterval(interval);
+        _this2.second = 30;
+        _this2.showText = true;
+      }, 30000);
+    },
+    //协议单选处理
+    handleRadio: function handleRadio(e) {
+      console.log(e);
+      this.scode = e.detail.value.length;
+      this.isRadio = !this.isRadio;
+    },
+    //上传头像
+    uploadImg: function uploadImg() {
+      var _this = this; //注意 uni 调用它的api this指向就不在指向vue实例 需要提前保存一下
+      uni.chooseImage({
+        sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
         sourceType: ['album'], //从相册选择
-        success: function success(res) {console.log(res); //需要判断图片的张数
-          if (res.tempFilePaths.length > 1) {uni.showToast({ title: '只能选择一张哦', icon: 'none' });return;}var result = res.tempFilePaths[0];_this.avatar = result;uni.uploadFile({ //注意加上基础路径
-            url: _baseUrl.default + '/lejuClient/login/uploadAvatar', filePath: result, name: 'file', header: { token: uni.getStorageSync("leju-token") }, timeout: 5000, success: function success(uploadFileRes) {console.log(uploadFileRes); //字符串 →对象
-              _this.avatar = JSON.parse(uploadFileRes.data).data.fileUrl;} });} });
+        success: function success(res) {
+          console.log(res); //需要判断图片的张数
+          if (res.tempFilePaths.length > 1) {
+            uni.showToast({
+              title: '只能选择一张哦',
+              icon: 'none' });
+
+            return;
+          }
+          var result = res.tempFilePaths[0];
+          _this.avatar = result;
+          uni.uploadFile({
+            //注意加上基础路径
+            url: _baseUrl.default + '/lejuClient/login/uploadAvatar',
+            filePath: result,
+            name: 'file',
+            header: {
+              token: uni.getStorageSync('leju-token') },
+
+            timeout: 5000,
+            success: function success(uploadFileRes) {
+              console.log(uploadFileRes);
+              //字符串 →对象
+              _this.avatar = JSON.parse(uploadFileRes.data).data.fileUrl;
+            } });
+
+        } });
+
+    },
+    //提交表单
+    submit: function submit() {var _this3 = this;
+      if (this.scode == 0) {
+        uni.showToast({
+          icon: 'none',
+          //position: 'bottom',
+          title: '请先同意《协议》' });
+
+        return false;
+      }
+      this.$refs.form.
+      validate().
+      then(function (res) {
+        console.log('表单数据信息：', res);
+        var newUser = {
+          birthday: '',
+          city: '',
+          email: '',
+          growth: 0,
+          historyIntegration: 0,
+          icon: _this3.avatar,
+          id: '',
+          integration: 0,
+          isDisabled: 0,
+          memberLevelId: '',
+          nickname: _this3.formData.nickname,
+          password: _this3.formData.password,
+          personalizedSignature: '',
+          phone: _this3.formData.phone,
+          realname: '',
+          sex: 0,
+          sourceType: 0,
+          status: 1, //帐号启用状态:0->禁用；1->启用 ,
+          username: _this3.formData.name,
+          wxOpenId: '' };
+
+        (0, _register.register)(newUser).then(function (res) {
+          console.log(res);
+          if (res.success == true) {
+            uni.showToast({
+              title: '注册成功!' });
+
+            setTimeout(function () {
+              uni.redirectTo({
+                //当前页面出栈 跳转之后的页面入栈
+                url: '/pages/mine/login/login' });
+
+            }, 1000);
+          }
+        });
+      }).
+      catch(function (err) {
+        console.log('表单错误信息：', err);
+      });
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
