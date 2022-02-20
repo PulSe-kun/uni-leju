@@ -1,14 +1,18 @@
 <template>
 	<view class="address">
 		<view class="main">
-			<view class="item" v-for="item in addressList" :key="item.id" @tap="sendMes(item)">
+			<view class="item" v-for="item in addressList" :key="item.id">
 				<view class="row">
-					<view class="left">
+					<view class="left" @tap="sendMes(item)">
 						<text class="name">{{ item.name }}</text>
 						<text class="tel">{{ item.phoneNumber }}</text>
 						<view class="city">{{ item.province }} {{ item.city }} {{ item.region }}</view>
 					</view>
-					<view class="right"><uni-icons type="compose" size="60rpx"></uni-icons></view>
+					<!-- 遇到外层view嵌套内层view，又同时都含有点击事件，这样就会起冲突。为了防止事件的继续传播 会用到事件修饰符.stop -->
+					<view class="right">
+						<view class="m-btn" v-if="item.defaultStatus">默认地址</view>
+						<uni-icons type="compose" size="30" @tap="edit(item.id)"></uni-icons>
+					</view>
 				</view>
 			</view>
 		</view>
@@ -22,11 +26,18 @@ import mix from '@/mixins/index.js';
 export default {
 	data() {
 		return {
-			addressList: []
+			addressList: [],
+			isChoose: false,
 		};
 	},
 	mixins: [mix],
-	onLoad() {
+	onLoad(options) {
+		//如果地址栏有参数 此时选择地址 回退上一页功能开启
+		if (options.type == "sendMes") {
+			this.isChoose = true;
+		}
+	},
+	onShow() {
 		if (this.checkLogin()) {
 			findAllAddress().then(res => {
 				console.log(res);
@@ -37,15 +48,26 @@ export default {
 	methods: {
 		//选择地址 回退上一页
 		sendMes(item) {
+			//判断 是否需要返回上一页 只有订单页面才需要返回上一页
+			if (!this.isChoose) {
+				return;
+			}
 			uni.setStorageSync('addressInfo', item);
 			uni.navigateBack({
 				//关闭当前页面，返回上一页面或多级页面
 				delta: 1 //返回的页面数
 			});
 		},
+		//添加地址
 		goAddList() {
 			uni.navigateTo({
-			    url: '/pages/order/addAddress/addAddress'
+				url: '/pages/order/addAddress/addAddress'
+			});
+		},
+		//修改地址
+		edit(id) {
+			uni.navigateTo({
+				url: `/pages/order/addAddress/addAddress?addressId=${id}`
 			});
 		}
 	}
@@ -68,11 +90,11 @@ export default {
 				display: flex;
 				align-items: center;
 				width: 90%;
-				padding: 10px 0;
+				padding: 20rpx;
 				border-bottom: 1px solid #ccc;
-				margin: 0 auto;
+				justify-content: space-between;
 				.left {
-					width: 100%;
+					width: 65%;
 					.name {
 						font-weight: bolder;
 					}
@@ -84,6 +106,19 @@ export default {
 					}
 				}
 				.right {
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					.m-btn {
+						font-size: 16rpx;
+						background-color: #354e44;
+						color: #fff;
+						border-radius: 8rpx;
+						height: 30rpx;
+						padding: 10rpx;
+						line-height: 30rpx;
+						margin-right: 20rpx;
+					}
 				}
 			}
 		}
@@ -92,13 +127,14 @@ export default {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: 60%;
-		height: 80rpx;
+		width: 70%;
+		height: 82rpx;
 		border-radius: 2.5rem;
 		background: rgb(53, 78, 68);
 		color: rgb(255, 255, 255);
 		margin-top: 30rpx;
-		font-size: 30rpx;
+		font-size: 32rpx;
+		margin-top: 40rpx;
 	}
 }
 </style>

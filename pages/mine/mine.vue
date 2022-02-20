@@ -20,7 +20,7 @@
 			<view class="title">我的订单</view>
 			<view class="navs">
 				<!-- 订单状态  1 已付款 ;  2 已发货; 3: 已收货;   9 申请退款 -->
-				<navigator class="nav-item" url="">
+				<navigator class="nav-item" url="/pages/mine/goodsOrder/goodsOrder">
 					<image class="icon" src="../../static/image/icons/icon-pay.png"></image>
 					<view class="text">待付款</view>
 				</navigator>
@@ -45,22 +45,28 @@
 		<!-- 功能页面 -->
 		<view class="list">
 			<view class="items">
-				<image class="img" src="../../static/image/icons/save.png" mode=""></image>
-				<text class="text">商品收藏</text>
+				<navigator url="/pages/mine/collect/collect">
+					<image class="img" src="../../static/image/icons/save.png" mode=""></image>
+					<text class="text">商品收藏</text>
+				</navigator>
 			</view>
-			<view class="items">
+			<view class="items" @tap="brand">
 				<image class="img" src="../../static/image/icons/brand.png" mode=""></image>
 				<text class="text">品牌</text>
 			</view>
 			<view class="items">
-				<image class="img" src="../../static/image/icons/article.png" mode=""></image>
-				<text class="text">文章收藏</text>
+				<navigator url="/pages/mine/article/article">
+					<image class="img" src="../../static/image/icons/article.png" mode=""></image>
+					<text class="text">文章收藏</text>
+				</navigator>
 			</view>
 			<view class="items">
-				<image class="img" src="../../static/image/icons/address.png" mode=""></image>
-				<text class="text">地址</text>
+				<navigator url="/pages/order/address/address">
+					<image class="img" src="../../static/image/icons/address.png" mode=""></image>
+					<text class="text">地址</text>
+				</navigator>
 			</view>
-			<view class="items">
+			<view class="items" @tap='wallet'>
 				<!-- <view class="img">
 					<uni-icons type="wallet" size="30"></uni-icons>
 				</view> -->
@@ -68,15 +74,17 @@
 				<text class="text">卡包</text>
 			</view>
 			<view class="items">
+				<navigator url="/pages/mine/cart/cart">
 				<image class="img" src="../../static/image/icons/cart2.png" mode=""></image>
 				<text class="text">购物车</text>
+				</navigator>
 			</view>
-			<view class="items">
+			<view class="items" @tap="help">
 				<image class="img" src="../../static/image/icons/contact.png" mode=""></image>
 				<text class="text">联系客服</text>
 			</view>
 		</view>
-		<navigator url="./login/login">登录</navigator>
+		<!-- <navigator url="./login/login">登录</navigator> -->
 	</view>
 </template>
 
@@ -137,6 +145,36 @@ export default {
 		login() {
 			uni.reLaunch({
 				url: './login/login'
+			});
+		},
+		//我的订单
+		// goGoodsOrder(){
+		// 	uni.navigateTo({
+		// 		url:'/pages/mine/goodsOrder/goodsOrder'
+		// 	})
+		// },
+		//品牌
+		brand() {
+			uni.showToast({
+				title: '品牌暂未开通',
+				icon:"error",
+				duration: 1000
+			});
+		},
+		//卡包
+		wallet(){
+			uni.showToast({
+				title: '卡包暂未开通',
+				icon:"error",
+				duration: 1000
+			});
+		},
+		//客服帮助
+		help(){
+			uni.showToast({
+				title: '客服占线',
+				icon:"error",
+				duration: 1000
 			});
 		}
 	}

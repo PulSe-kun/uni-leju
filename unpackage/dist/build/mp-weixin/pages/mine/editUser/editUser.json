@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "用 户 信 息",
+  "navigationBarBackgroundColor": "#354e44",
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": false,
+  "usingComponents": {}
+}

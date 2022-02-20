@@ -50,17 +50,34 @@
 .addAddress .list .right .area.data-v-39887ea5 {
   font-size: 30rpx;
 }
+.addAddress .list .switch.data-v-39887ea5 {
+  display: flex;
+  justify-content: flex-end;
+}
 .addAddress .re-btn.data-v-39887ea5 {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80%;
-  height: 100rpx;
+  width: 70%;
+  height: 82rpx;
   border-radius: 2.5rem;
   background: #354e44;
   color: white;
   margin-top: 30rpx;
-  font-size: 36rpx;
-  margin-top: 180rpx;
+  font-size: 32rpx;
+  margin-top: 40rpx;
+}
+.addAddress .del-btn.data-v-39887ea5 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+  height: 82rpx;
+  border-radius: 2.5rem;
+  background: #e64340;
+  color: #fff;
+  margin-top: 30rpx;
+  font-size: 32rpx;
+  margin-top: 150rpx;
 }
 

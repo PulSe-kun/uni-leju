@@ -14,7 +14,13 @@
     "pages/order/order",
     "pages/order/address/address",
     "pages/order/pay/pay",
-    "pages/order/addAddress/addAddress"
+    "pages/order/addAddress/addAddress",
+    "pages/mine/collect/collect",
+    "pages/mine/article/article",
+    "pages/order/pay/payResult/payResult",
+    "pages/mine/cart/cart",
+    "pages/mine/goodsOrder/goodsOrder",
+    "pages/mine/goodsOrder/returnOrder/returnOrder"
   ],
   "subPackages": [],
   "window": {

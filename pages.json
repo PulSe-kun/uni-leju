@@ -26,6 +26,7 @@
 			"path": "pages/find/find",
 			"style": {
 				"navigationBarTitleText": "发 现",
+				"navigationBarBackgroundColor": "#354e44",
 				"enablePullDownRefresh": false,
 				"h5": {
 					"titleNView": false
@@ -149,7 +150,61 @@
             "path" : "pages/order/addAddress/addAddress",
             "style" :                                                                                    
             {
+                "navigationBarTitleText": "新 增 地 址",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/mine/collect/collect",
+            "style" :                                                                                    
+            {
                 "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/mine/article/article",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/order/pay/payResult/payResult",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/mine/cart/cart",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "购 物 车",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/mine/goodsOrder/goodsOrder",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我 的 订 单",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/mine/goodsOrder/returnOrder/returnOrder",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "退 货"  ,
                 "enablePullDownRefresh": false
             }
             

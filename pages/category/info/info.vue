@@ -58,7 +58,7 @@
 				<view class="line"></view>
 				<view class="num">
 					<view class="c-title">购买数量</view>
-					<view class="buyCount"><uni-number-box v-model="vModelValue"></uni-number-box></view>
+					<view class="buyCount"><uni-number-box v-model="vModelValue" :min="1"></uni-number-box></view>
 				</view>
 				<button type="default" @tap="order">确定</button>
 			</view>
@@ -82,7 +82,7 @@ export default {
 			isMaskShow: false, //弹窗
 			current: 0,
 			currentTap: '', //根据状态来判断是添加购物车还是立即下单
-			vModelValue: ''
+			vModelValue: 1
 		};
 	},
 	mixins: [mix],

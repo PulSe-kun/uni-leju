@@ -25,7 +25,7 @@ function addAddressInfo(data) { //添加收获地址
 function switchDefault(addressId, defaultStatus) { //切换修改地址默认
 	return request({
 		url: `/lejuClient/address/switchDefault/${addressId}/${defaultStatus}`,
-		method: 'post'
+		method: 'post',
 	})
 }
 

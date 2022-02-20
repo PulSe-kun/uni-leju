@@ -42,12 +42,12 @@
   display: flex;
   align-items: center;
   width: 90%;
-  padding: 10px 0;
+  padding: 20rpx;
   border-bottom: 1px solid #ccc;
-  margin: 0 auto;
+  justify-content: space-between;
 }
 .address .main .item .row .left.data-v-0ccec96f {
-  width: 100%;
+  width: 65%;
 }
 .address .main .item .row .left .name.data-v-0ccec96f {
   font-weight: bolder;
@@ -58,16 +58,32 @@
 .address .main .item .row .left .city.data-v-0ccec96f {
   padding-top: 20rpx;
 }
+.address .main .item .row .right.data-v-0ccec96f {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.address .main .item .row .right .m-btn.data-v-0ccec96f {
+  font-size: 16rpx;
+  background-color: #354e44;
+  color: #fff;
+  border-radius: 8rpx;
+  height: 30rpx;
+  padding: 10rpx;
+  line-height: 30rpx;
+  margin-right: 20rpx;
+}
 .address .re-btn.data-v-0ccec96f {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 60%;
-  height: 80rpx;
+  width: 70%;
+  height: 82rpx;
   border-radius: 2.5rem;
   background: #354e44;
   color: white;
   margin-top: 30rpx;
-  font-size: 30rpx;
+  font-size: 32rpx;
+  margin-top: 40rpx;
 }
 

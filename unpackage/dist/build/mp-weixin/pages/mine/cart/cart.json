@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "购 物 车",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "evan-checkbox": "/components/evan-checkbox/evan-checkbox"
+  }
+}

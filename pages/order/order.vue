@@ -4,8 +4,8 @@
 		<view v-if="!addressInfo.id" @tap="selectAddress" class="save">选择收货地址</view>
 		<view class="address" v-else>
 			<view class="addressInfo">
-				<view >姓名: {{ addressInfo.name }} &nbsp&nbsp手机号: {{ addressInfo.phoneNumber }}</view>
-				<view >收获地址: {{ addressInfo.province }} {{ addressInfo.city }} {{ addressInfo.region }}</view>
+				<view>姓名: {{ addressInfo.name }} &nbsp&nbsp手机号: {{ addressInfo.phoneNumber }}</view>
+				<view>收获地址: {{ addressInfo.province }} {{ addressInfo.city }} {{ addressInfo.region }}</view>
 			</view>
 			<view class="btn" @tap="selectAddress">更换地址</view>
 		</view>
@@ -75,15 +75,32 @@ export default {
 	},
 	methods: {
 		//选择收货地址
-		selectAddress() {
+		selectAddress(sendMes) {
 			uni.navigateTo({
-				url: '/pages/order/address/address'
+				url: `/pages/order/address/address?type=sendMes`
 			});
 		},
 		//去付款
 		goPay() {
-			uni.navigateTo({
-				url: '/pages/order/pay/pay'
+			var obj = {
+				addressId: this.addressInfo.id,
+				orderId: this.list.orderBase.id,
+				orderItemList: []
+			};
+			//注意商品可能有多个一起下单
+			this.list.orderItems.forEach(ele => {
+				var info = {
+					cartId: ele.cartId,
+					productId: ele.orderId,
+					productQuantity: ele.productQuantity,
+					productSkuId: ele.productSkuId
+				};
+				obj.orderItemList.push(info);
+			});
+			addConfirmOrder(obj).then(res => {
+				uni.navigateTo({
+					url: `/pages/order/pay/pay?orderId=${res.data.orderId}`
+				});
 			});
 		}
 	}
@@ -101,7 +118,7 @@ export default {
 		margin: 0 60rpx;
 		box-sizing: border-box;
 	}
-	.save{
+	.save {
 		font-size: 28rpx;
 		color: #494949;
 		border-bottom: 2rpx solid #ccc;
