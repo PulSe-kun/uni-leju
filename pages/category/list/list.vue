@@ -4,8 +4,8 @@
 			<view class="item" v-for="(item, index) in tabList" :key="item.name" @tap="toggle(index)">
 				<view :class="index == currentIndex ? 'orange' : ''">{{ item.name }}</view>
 				<view class="icon" v-if="index == 1 || index == 2">
-					<uni-icons type="top" :color="item.current == 'up' ? 'orange' : ''" size="14"></uni-icons>
-					<uni-icons type="bottom" :color="item.current == 'down' ? 'orange' : ''" size="14"></uni-icons>
+					<uni-icons type="top" :color="item.current == 'up' ? 'orange' : ''" size="28rpx"></uni-icons>
+					<uni-icons type="bottom" :color="item.current == 'down' ? 'orange' : ''" size="28rpx"></uni-icons>
 				</view>
 			</view>
 		</view>

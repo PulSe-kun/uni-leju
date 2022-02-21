@@ -20,23 +20,23 @@
 			<view class="title">我的订单</view>
 			<view class="navs">
 				<!-- 订单状态  1 已付款 ;  2 已发货; 3: 已收货;   9 申请退款 -->
-				<navigator class="nav-item" url="/pages/mine/goodsOrder/goodsOrder">
+				<navigator class="nav-item" url="/pages/mine/goodsOrder/goodsOrder?type=0">
 					<image class="icon" src="../../static/image/icons/icon-pay.png"></image>
 					<view class="text">待付款</view>
 				</navigator>
-				<navigator class="nav-item" url="">
+				<navigator class="nav-item" url="/pages/mine/goodsOrder/goodsOrder?type=1">
 					<image class="icon" src="../../static/image/icons/pay-done.png"></image>
 					<view class="text">已付款</view>
 				</navigator>
-				<navigator class="nav-item" url="">
+				<navigator class="nav-item" url="/pages/mine/goodsOrder/goodsOrder?type=2">
 					<image class="icon" src="../../static/image/icons/icon-car.png"></image>
 					<view class="text">已发货</view>
 				</navigator>
-				<navigator class="nav-item" url="">
+				<navigator class="nav-item" url="/pages/mine/goodsOrder/goodsOrder?type=3">
 					<image class="icon" src="../../static/image/icons/icon-done.png"></image>
 					<view class="text">已收货</view>
 				</navigator>
-				<navigator class="nav-item" url="">
+				<navigator class="nav-item" url="/pages/mine/goodsOrder/goodsOrder?type=4">
 					<image class="icon" src="../../static/image/icons/icon-back.png"></image>
 					<view class="text">售后</view>
 				</navigator>

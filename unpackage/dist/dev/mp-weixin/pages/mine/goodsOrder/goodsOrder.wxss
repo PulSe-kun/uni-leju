@@ -60,7 +60,7 @@
   justify-content: space-between;
   border-bottom: 2rpx solid #f1ece7;
   padding-bottom: 30rpx;
-  font-size: 20rpx;
+  font-size: 24rpx;
 }
 .goodsOrder .main .orderItems .title .wait {
   color: #034c46;
@@ -104,14 +104,12 @@
   width: 100%;
 }
 .goodsOrder .main .orderItems .center .info .p4 {
+  display: flex;
+  justify-content: flex-end;
   width: 100%;
   font-weight: bolder;
   color: #333;
   font-size: 28rpx;
-  overflow: hidden;
-}
-.goodsOrder .main .orderItems .center .info .p4 uni-navigator {
-  float: right;
   text-decoration: underline;
 }
 .goodsOrder .main .orderItems .footer .btnBox {
@@ -129,6 +127,11 @@
   text-align: center;
   line-height: 50rpx;
   margin-left: 40rpx;
+}
+.goodsOrder .main .orderItems .footer .btnBox .btn-closed {
+  width: auto;
+  padding: 0 10rpx;
+  border-color: #dd524d;
 }
 .goodsOrder .main .orderItems .footer .info {
   display: flex;

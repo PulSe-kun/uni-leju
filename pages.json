@@ -159,7 +159,7 @@
             "path" : "pages/mine/collect/collect",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "商 品 收 藏",
                 "enablePullDownRefresh": false
             }
             

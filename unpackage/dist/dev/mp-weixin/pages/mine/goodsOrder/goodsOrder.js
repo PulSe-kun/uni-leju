@@ -272,7 +272,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _goodsOrder = __webpack_require__(/*! @/api/mine/goodsOrder/goodsOrder.js */ 187); //
+var _goodsOrder = __webpack_require__(/*! @/api/mine/goodsOrder/goodsOrder.js */ 187);
+var _index = _interopRequireDefault(__webpack_require__(/*! @/mixins/index.js */ 50));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
 //
 //
@@ -348,9 +349,13 @@ var _goodsOrder = __webpack_require__(/*! @/api/mine/goodsOrder/goodsOrder.js */
 //
 //
 var _default = { data: function data() {return { orderList: [], returnList: [], currentIndex: 0, //默认显示下标0
-      tabList: [{ name: '待付款' }, { name: '已付款' }, { name: '已发货' }, { name: '已收货' }, { name: '售后' }] };}, onLoad: function onLoad() {this.init();}, filters: { filterGoods: function filterGoods(val) {//检测 字符串类型
+      tabList: [{ name: '待付款' }, { name: '已付款' }, { name: '已发货' }, { name: '已收货' }, { name: '售后' }] };}, mixins: [_index.default], onLoad: function onLoad(e) {this.currentIndex = e.type;}, onShow: function onShow() {this.checkLogin(this.init());}, filters: { filterGoods: function filterGoods(val) {//检测 字符串类型
       //将JSON格式的字符串转换回对象
-      if (typeof val == 'string') {var arr = JSON.parse(val);return arr.reduce(function (total, current) {return total + current.key + ':' + current.value + '   ';}, '');} else {return val.reduce(function (total, current) {return total + current.key + ':' + current.value + '   ';}, '');}}, orderProcessText: function orderProcessText(process) {var text = '等待处理';switch (JSON.stringify(process)) {case '0':text = '等待处理';break;case '1':text = '确认退货,待用户寄回';break;case '2':text = '已退款';break;case '3':text = '已拒绝';break;case '9':text = '拒绝退货';break;default:break;}return text;}, statusText: function statusText(val) {if (val == 0) {return '未付款';} else if (val == 1) {return '已付款,等待发货';} else if (val == 2) {return '已发货';} else if (val == 3) {return '已收货';} else if (val == 4) {return '已退单';
+      if (typeof val == 'string') {var arr = JSON.parse(val);return arr.reduce(function (total, current) {return total + current.key + ':' + current.value + '   ';}, '');} else {return val.reduce(function (total, current) {return total + current.key + ':' + current.value + '   ';}, '');}}, orderProcessText: function orderProcessText(process) {var text = '等待处理';switch (JSON.stringify(process)) {case '0':text = '等待处理';break;case '1':text = '确认退货,待用户寄回';break;case '2':text = '已退款';break;case '3':text = '已拒绝';break;case '9':text = '拒绝退货';break;default:break;}return text;}, statusText: function statusText(val) {if (val == 0) {return '未付款';} else if (val == 1) {return '已付款,等待发货';} else if (val == 2) {return '已发货';
+      } else if (val == 3) {
+        return '已收货';
+      } else if (val == 4) {
+        return '已退单';
       } else {
         return '无效订单';
       }
@@ -414,7 +419,7 @@ var _default = { data: function data() {return { orderList: [], returnList: [], 
       });
     },
     //删除订单
-    del: function del(item) {var _this5 = this;
+    delHistory: function delHistory(item) {var _this5 = this;
       (0, _goodsOrder._clearOrderFocus)(item.order.id).then(function (res) {
         if (res.success) {
           uni.showLoading({

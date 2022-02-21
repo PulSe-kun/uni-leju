@@ -2,6 +2,6 @@
   "navigationBarTitleText": "首 页",
   "enablePullDownRefresh": true,
   "usingComponents": {
-    "uni-icons": "/components/uni-icons/uni-icons"
+    "uni-icons": "/uni_modules/uni-icons/components/uni-icons/uni-icons"
   }
 }

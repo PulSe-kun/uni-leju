@@ -36,12 +36,21 @@ function _clearOrderFocus(id){ //删除订单
 		method:'post',
 	})
 }
+// 删除订单记录
+function deleteOrder(id,data){
+	return request({
+		url: `/lejuClient/order/deleteOrder/${id}`,
+		method: 'delete',
+		data
+	})
+}
 export {
 	findAllOrders,
 	cancelOrder,
 	receiveDone,
 	_clearOrderFocus,
-	orderReturnApplys
+	orderReturnApplys,
+	deleteOrder
 }
 
 

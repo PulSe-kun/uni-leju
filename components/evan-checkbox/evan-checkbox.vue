@@ -14,12 +14,8 @@
 </template>
 
 <script>
-	import UniIcons from '@/components/uni-icons/uni-icons.vue'
 	export default {
 		name: 'EvanCheckbox',
-		components: {
-			UniIcons
-		},
 		props: {
 			shape: {
 				type: String,

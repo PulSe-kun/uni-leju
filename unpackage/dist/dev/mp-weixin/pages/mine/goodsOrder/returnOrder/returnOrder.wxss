@@ -24,10 +24,10 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.returnOrder {
-  padding: 0 32rpx;
+.returnOrder.data-v-75d861c9 {
+  padding: 20rpx 32rpx 100rpx;
 }
-.returnOrder .orderItems {
+.returnOrder .orderItems.data-v-75d861c9 {
   width: 672rpx;
   box-sizing: border-box;
   padding: 36rpx 20rpx;
@@ -37,43 +37,43 @@
   font-size: 24rpx;
   color: #3e3e3e;
 }
-.returnOrder .orderItems .title {
+.returnOrder .orderItems .title.data-v-75d861c9 {
   display: flex;
   justify-content: space-between;
   border-bottom: 2rpx solid #f1ece7;
   padding-bottom: 30rpx;
 }
-.returnOrder .orderItems .title .wait {
+.returnOrder .orderItems .title .wait.data-v-75d861c9 {
   color: #034c46;
 }
-.returnOrder .orderItems .center {
+.returnOrder .orderItems .center.data-v-75d861c9 {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   border-bottom: 2rpx solid #f1ece7;
   padding: 30rpx 0;
 }
-.returnOrder .orderItems .center image {
+.returnOrder .orderItems .center image.data-v-75d861c9 {
   width: 162rpx;
   height: 162rpx;
   flex-shrink: 0;
   background-color: #8f8f94;
 }
-.returnOrder .orderItems .center .info {
+.returnOrder .orderItems .center .info.data-v-75d861c9 {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   color: #8d8d8d;
   margin-left: 20rpx;
 }
-.returnOrder .orderItems .center .info .p1 {
+.returnOrder .orderItems .center .info .p1.data-v-75d861c9 {
   width: 100%;
   display: flex;
   justify-content: space-between;
   font-size: 26rpx;
   color: #3e3e3e;
 }
-.returnOrder .orderItems .center .info .p2 {
+.returnOrder .orderItems .center .info .p2.data-v-75d861c9 {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -81,16 +81,31 @@
   line-height: 30rpx;
   padding: 20rpx 0;
 }
-.returnOrder .orderItems .center .info .p3 {
+.returnOrder .orderItems .center .info .p3.data-v-75d861c9 {
   width: 100%;
 }
-.returnOrder .orderItems .footer .totalPrice {
+.returnOrder .orderItems .footer .totalPrice.data-v-75d861c9 {
   font-size: 26rpx;
   line-height: 36rpx;
   text-align: right;
   margin-top: 14rpx;
 }
-.returnOrder .info .text {
+.returnOrder .info-card.data-v-75d861c9 {
+  border-radius: 24rpx;
+  background: #fff;
+}
+.returnOrder .info-card .text.data-v-75d861c9 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  font-size: 24rpx;
+  padding: 30rpx;
+  border-bottom: 2rpx solid #f1ece7;
+}
+.returnOrder .info-card .text .title.data-v-75d861c9 {
+  font-size: 24rpx;
+}
+.returnOrder .info-card .write.data-v-75d861c9 {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -99,27 +114,66 @@
   background: #fff;
   border-bottom: 2rpx solid #f1ece7;
 }
-.returnOrder .info .text .title {
-  font-size: 24rpx;
-}
-.returnOrder .info .write {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  font-size: 24rpx;
-  padding: 30rpx;
-  background: #fff;
-  border-bottom: 2rpx solid #f1ece7;
-}
-.returnOrder .info .write uni-textarea {
+.returnOrder .info-card .write uni-textarea.data-v-75d861c9 {
   width: 50%;
   font-size: 24rpx;
 }
-.returnOrder .info .upload {
+.returnOrder .info-card .upload.data-v-75d861c9 {
   background-color: #fff;
+  padding: 30rpx;
 }
-.returnOrder .info .upload .li {
+.returnOrder .info-card .upload .li.data-v-75d861c9 {
   font-size: 24rpx;
-  padding: 30rpx 0;
+  padding: 10rpx 0;
+}
+.returnOrder .info-card .upload .img.data-v-75d861c9 {
+  display: flex;
+  align-items: center;
+}
+.returnOrder .info-card .upload .img .icon.data-v-75d861c9 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  font-size: 20rpx;
+  color: #666;
+  width: 120rpx;
+  height: 120rpx;
+}
+.returnOrder .info-card .upload .img .icon .info.data-v-75d861c9 {
+  font-size: 24rpx;
+  line-height: 48rpx;
+}
+.returnOrder .info-card .upload .img .box.data-v-75d861c9 {
+  width: 120rpx;
+  height: 120rpx;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 8rpx;
+  margin-left: 20rpx;
+  position: relative;
+}
+.returnOrder .info-card .upload .img .box image.data-v-75d861c9 {
+  width: 100%;
+  height: 100%;
+}
+.returnOrder .info-card .upload .img .box .x-btn.data-v-75d861c9 {
+  position: absolute;
+  top: -10rpx;
+  right: -10rpx;
+  width: 34rpx;
+  height: 34rpx;
+}
+.returnOrder .btn.data-v-75d861c9 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  height: 80rpx;
+  border-radius: 2.5rem;
+  background: #354e44;
+  color: white;
+  margin-top: 50rpx;
+  font-size: 32rpx;
 }
 

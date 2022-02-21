@@ -39,11 +39,6 @@
 	import EvanCheckboxGroup from '@/components/evan-checkbox-group/evan-checkbox-group.vue'
 	export default {
 		name: 'EvanCheckboxPopup',
-		components: {
-			uniPopup,
-			EvanCheckbox,
-			EvanCheckboxGroup
-		},
 		props: {
 			options: {
 				type: Array,

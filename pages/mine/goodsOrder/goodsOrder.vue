@@ -10,7 +10,7 @@
 					<text class="wait">{{ item.order.status | statusText }}</text>
 				</view>
 				<view class="center" v-for="goods in item.items" :key="goods.id">
-					<image :src="goods.productPic" mode=""></image>
+				<navigator :url="`/pages/category/info/info?id=${goods.productId}`"><image :src="goods.productPic" mode=""></image></navigator>	
 					<view class="info">
 						<view class="p1">
 							<view class="name">{{ goods.productName }}</view>
@@ -22,7 +22,7 @@
 						</view>
 						<view class="p3">规格: {{ goods.productAttr | filterGoods }}</view>
 						<view class="p4">
-							<navigator v-if="currentIndex == 2" :url="`./returnOrder/returnOrder?id=${goods.orderId}`">退货</navigator>
+							<navigator v-if="currentIndex == 2" :url="`./returnOrder/returnOrder?id=${goods.orderId}&skuid=${goods.productSkuId}`">退货</navigator>
 						</view>
 					</view>
 				</view>
@@ -36,7 +36,7 @@
 						<view class="btn" type="default" @tap="goPay(item)">确认付款</view>
 					</view>
 					<view class="btnBox" v-if="currentIndex == 2"><view class="btn" @tap="confirm(item)">确认收货</view></view>
-					<view class="btnBox" v-if="currentIndex == 3"><view class="btn" @tap="del(item)">删除订单</view></view>
+					<view class="btnBox" v-if="currentIndex == 3"><view class="btn btn-closed" @tap="delHistory(item)">订单已关闭,删除记录</view></view>
 				</view>
 			</view>
 			<view v-if="orderList.length <= 0">暂无订单数据</view>
@@ -45,7 +45,7 @@
 			<view class="orderItems" v-for="item in orderList" :key="item.id" v-if="orderList.length > 0">
 				<view class="title">
 					<text>订单编号:{{ item.order.orderSn }}</text>
-					<text class="wait" :style="{ color: item.status == 2 || item.status == 3 ? 'red' : '' }">{{ item.order.status | orderProcessText }}</text>
+					<text class="wait" :style="{ color: item.order.status == 2 || item.order.status == 3 ? 'red' : '' }">{{ item.order.status | orderProcessText }}</text>
 				</view>
 				<view class="center" v-for="goods in item.items" :key="goods.id">
 					<image :src="goods.productPic" mode=""></image>
@@ -74,7 +74,8 @@
 </template>
 
 <script>
-import { findAllOrders, cancelOrder, receiveDone, _clearOrderFocus, orderReturnApplys } from '@/api/mine/goodsOrder/goodsOrder.js';
+import { findAllOrders, cancelOrder, receiveDone, _clearOrderFocus, orderReturnApplys, deleteOrder } from '@/api/mine/goodsOrder/goodsOrder.js';
+import mix from '@/mixins/index.js';
 export default {
 	data() {
 		return {
@@ -100,8 +101,12 @@ export default {
 			]
 		};
 	},
-	onLoad() {
-		this.init();
+	mixins: [mix],
+	onLoad(e) {
+		this.currentIndex = e.type;
+	},
+	onShow() {
+		this.checkLogin(this.init());
 	},
 	filters: {
 		filterGoods(val) {
@@ -216,7 +221,7 @@ export default {
 			});
 		},
 		//删除订单
-		del(item) {
+		delHistory(item) {
 			_clearOrderFocus(item.order.id).then(res => {
 				if (res.success) {
 					uni.showLoading({
@@ -228,7 +233,7 @@ export default {
 					this.init();
 				}
 			});
-		}
+		},
 	}
 };
 </script>
@@ -270,7 +275,7 @@ export default {
 				justify-content: space-between;
 				border-bottom: 2rpx solid #f1ece7;
 				padding-bottom: 30rpx;
-				font-size: 20rpx;
+				font-size: 24rpx;
 				.wait {
 					color: #034c46;
 				}
@@ -311,16 +316,14 @@ export default {
 					.p3 {
 						width: 100%;
 					}
-					.p4{
+					.p4 {
+						display: flex;
+						justify-content: flex-end;
 						width: 100%;
 						font-weight: bolder;
 						color: #333;
 						font-size: 28rpx;
-						overflow: hidden;
-						uni-navigator{
-							float: right;
-							text-decoration: underline;
-						}
+						text-decoration: underline;
 					}
 				}
 			}
@@ -339,6 +342,11 @@ export default {
 						text-align: center;
 						line-height: 50rpx;
 						margin-left: 40rpx;
+					}
+					.btn-closed {
+						width: auto;
+						padding: 0 10rpx;
+						border-color: #dd524d;
 					}
 				}
 				.info {

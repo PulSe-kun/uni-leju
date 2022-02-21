@@ -96,7 +96,7 @@ var components
 try {
   components = {
     simpleAddress: function() {
-      return Promise.all(/*! import() | components/simple-address/simple-address */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/simple-address/simple-address")]).then(__webpack_require__.bind(null, /*! @/components/simple-address/simple-address.vue */ 246))
+      return Promise.all(/*! import() | components/simple-address/simple-address */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/simple-address/simple-address")]).then(__webpack_require__.bind(null, /*! @/components/simple-address/simple-address.vue */ 255))
     }
   }
 } catch (e) {
@@ -216,7 +216,7 @@ var _address = __webpack_require__(/*! @/api/order/address/address.js */ 121); /
 //
 //
 //
-var simpleAddress = function simpleAddress() {Promise.all(/*! require.ensure | components/simple-address/simple-address */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/simple-address/simple-address")]).then((function () {return resolve(__webpack_require__(/*! @/components/simple-address/simple-address.vue */ 246));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { data: function data() {return { addlistInfo: { name: '', phone: '', detail: '' }, cityPickerValueDefault: [0, 0, 1], //地区组件地址初始值,
+var simpleAddress = function simpleAddress() {Promise.all(/*! require.ensure | components/simple-address/simple-address */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/simple-address/simple-address")]).then((function () {return resolve(__webpack_require__(/*! @/components/simple-address/simple-address.vue */ 255));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { data: function data() {return { addlistInfo: { name: '', phone: '', detail: '' }, cityPickerValueDefault: [0, 0, 1], //地区组件地址初始值,
       labelArr: [], editType: false, //区分编辑还是新增
       flag: true, //控制地区显示隐藏
       isChecked: false, //控制默认地址
