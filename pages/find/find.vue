@@ -33,7 +33,7 @@
 								<!-- #endif -->
 								<view class="collect" @tap="collect(item.id)">
 									<image class="icon" v-if="!item.isCollected" src="/static/image/icons/collect.png"></image>
-									<image class="icon" v-else src=""></image>
+									<image class="icon" v-else src="/static/image/icons/collect1-active.png"></image>
 								</view>
 							</view>
 						</view>
@@ -174,6 +174,7 @@ export default {
 		left: 0;
 		top: 0;
 		z-index: 999;
+		background-color:#354e44 ;
 
 		.radio-group {
 			display: flex;
@@ -190,11 +191,11 @@ export default {
 					box-sizing: border-box;
 					padding: 10rpx 0;
 					margin: 0 10rpx;
-					color: #354e44;
+					color: #fff;
 				}
 
 				&.active .text {
-					border-bottom: 4rpx solid #fff;
+					border-bottom: 4rpx solid #b0b0b0;
 				}
 			}
 		}
